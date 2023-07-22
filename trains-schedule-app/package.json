@@ -5,6 +5,25 @@ import { Container, Typography } from '@material-ui/core';
 
 const TrainsScheduleApp = () => {
   const [trains, setTrains] = useState([]);
+{
+  "name": "trains-schedule-app",
+  "version": "1.0.0",
+  "description": "A React-based frontend web application for displaying train schedules.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "react-scripts start"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@material-ui/core": "^4.12.3",
+    "axios": "^0.21.4",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3"
+  }
+}
 
   useEffect(() => {
     const fetchData = async () => {
