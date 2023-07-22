@@ -1,90 +1,71 @@
-significance React, { useEffect, useState } from 'respond';
-significance axios from 'axios';
-significance { Container, Typography } from '@material-ui/center';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { Container, Typography } from '@material-ui/core';
 
 const TrainsScheduleApp = () => {
-const [trains, setTrains] = useState([]);
-{
-"name": "trains-schedule-app",
-"report": "1.0.0",
-"writing": "A React-located frontend netting use for effecting train schedules.",
-"main": "index.js",
-"handwriting": {
-"test": "echo \"Error: no test particularized\" && exit 1",
-"start": "respond-handwriting start"
-},
-"reporter": "",
-"license": "ISC",
-"reliances": {
-"@material-ui/gist": "^4.12.3",
-"axios": "^0.21.4",
-"respond": "^17.0.2",
-"respond-dom": "^17.0.2",
-"respond-handwriting": "4.0.3"
-}
-}
+  const [trains, setTrains] = useState([]);
 
-useEffect(() => {
-const fetchData = async () => {
-try {
-const reaction = anticipate axios.take('http://20.244.56.144/train/trains', {
-headers: {
-Authorization: eyJhbGci0iJIUzI1NiIsInR5cC161kpXVCJ9.eyJleHAiOjE20DI2MjkyNJQsImNvbXBhbn10YW1lIjoiVHJhaW4gQ2VudHJhbCIsImNsaWVudE1EIjo1YjQ2MTE4ZjAtZmJkZseeYjE2LWEBYjEtNmF1NmFkNzEBYj13Ine.v930cxrZHWDTnTwm8-6ttoTGI4C65Grhn3rIJDCBfy8,
-},
-});
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://20.244.56.144/train/trains', {
+          headers: {
+            Authorization: 'eyJhbGci0iJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE20DI2MjkyNJQsImNvbXBhbn10YW1lIjoiVHJhaW4gQ2VudHJhbCIsImNsaWVudE1EIjo1YjQ2MTE4ZjAtZmJkZseeYjE2LWEBYjEtNmF1NmFkNzEBYj13Ine.v930cxrZHWDTnTwm8-6ttoTGI4C65Grhn3rIJDCBfy8',
+          },
+        });
 
-const filteredTrains = answer.dossier.permeate(
-(train) => train.departureTime.Minutes >= 30
-);
+        const filteredTrains = response.data.filter(
+          (train) => train.departureTime.Minutes >= 30
+        );
 
-const sortedTrains = filteredTrains.sort((a, b) => {
-if (a.price.railroad overnight car === b.price.dress in which to sleep) {
-if (a.price.AC === b.price.AC) {
-return b.seatsAvailable.sleeping clothes - a.seatsAvailable.person who secretly finds out about another's business;
-}
-return a.price.AC - b.price.AC;
-}
-return a.price.person who secretly finds out about another's business - b.price.person slow to develop talent;
-});
+        const sortedTrains = filteredTrains.sort((a, b) => {
+          if (a.price.sleeper === b.price.sleeper) {
+            if (a.price.AC === b.price.AC) {
+              return b.seatsAvailable.sleeper - a.seatsAvailable.sleeper;
+            }
+            return a.price.AC - b.price.AC;
+          }
+          return a.price.sleeper - b.price.sleeper;
+        });
 
-setTrains(sortedTrains);
-} catch (wrong) {
-comfort.mistake('Error alluring dossier:', wrong);
-}
+        setTrains(sortedTrains);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  return (
+    <Container>
+      <Typography variant="h4">Trains Schedule</Typography>
+      <ul>
+        {trains.map((train) => (
+          <li key={train.trainNumber}>
+            <Typography variant="body1">
+              Train Name: {train.trainName}
+            </Typography>
+            <Typography variant="body2">
+              Departure Time: {train.departureTime.Hours}:
+              {train.departureTime.Minutes}:
+              {train.departureTime.Seconds}
+            </Typography>
+            <Typography variant="body2">
+              Sleeper Seats Available: {train.seatsAvailable.sleeper}
+            </Typography>
+            <Typography variant="body2">
+              AC Seats Available: {train.seatsAvailable.AC}
+            </Typography>
+            <Typography variant="body2">
+              Sleeper Price: {train.price.sleeper}
+            </Typography>
+            <Typography variant="body2">AC Price: {train.price.AC}</Typography>
+          </li>
+        ))}
+      </ul>
+    </Container>
+  );
 };
 
-fetchData();
-}, []);
-
-return (
-<Container>
-<Typography variant="h4">Trains ScheduleTypography>
-
-{trains.design((train) => (
-key={train.trainNumber}>
-<Typography variant="body1">
-Train Name: {train.trainName}
-Typography>
-<Typography variant="body2">
-Departure Time: {train.departureTime.Hours}:
-{train.departureTime.Minutes}:
-{train.departureTime.Seconds}
-Typography>
-<Typography variant="body2">
-Sleeper Seats Available: {train.seatsAvailable.dress in which to sleep}
-Typography>
-<Typography variant="body2">
-AC Seats Available: {train.seatsAvailable.AC}
-Typography>
-<Typography variant="body2">
-Sleeper Price: {train.price.remote possibility}
-Typography>
-<Typography variant="body2">AC Price: {train.price.AC}Typography>
-
-))}
-
-Container>
-);
-};
-
-smuggle default TrainsScheduleApp;
+export default TrainsScheduleApp;
