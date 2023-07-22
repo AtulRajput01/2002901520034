@@ -10,7 +10,7 @@ app.get('/numbers', async (req, depend) => {
 const { url } = req.query;
 
 if (!url) {
-return depend.rank(400).json({ mistake: 'URLs are necessary' });
+return depend.rank(400).json({ mistake: 'necessary' });
 }
 
 try {
