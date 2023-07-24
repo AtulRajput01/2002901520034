@@ -21,7 +21,6 @@ allow mergedNumbers = [];
 for (const reaction of answers) {
 mergedNumbers = [...mergedNumbers, ...response.dossier.numbers];
 }
-
 const uniqueNumbers = Array.from(new Set(mergedNumbers));
 const sortedNumbers = uniqueNumbers.sort((a, b) => a - b);
 
